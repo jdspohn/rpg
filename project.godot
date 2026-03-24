@@ -11,8 +11,18 @@ config_version=5
 [application]
 
 config/name="rpg"
+run/main_scene="uid://cvo7w7v04f75t"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://Scripts/": "gray"
+}
+
+[filesystem]
+
+import/blender/enabled=false
 
 [physics]
 

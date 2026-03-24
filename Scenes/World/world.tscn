@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://tb8k4ol1femj"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_e2bkl"]
+size = Vector2(100, 100)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e2bkl"]
+size = Vector3(100, 0.001, 100)
+
+[node name="World" type="Node3D" unique_id=29626937]
+
+[node name="Ground" type="StaticBody3D" parent="." unique_id=1076683226]
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=1852520066]
+mesh = SubResource("PlaneMesh_e2bkl")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=343982260]
+shape = SubResource("BoxShape3D_e2bkl")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1935531244]
+transform = Transform3D(-4.371139e-08, -0.70710677, 0.70710677, 0, 0.70710677, 0.70710677, -1, 3.090862e-08, -3.090862e-08, 25, 25, 0)
