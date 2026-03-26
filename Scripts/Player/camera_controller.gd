@@ -11,6 +11,6 @@ func move_camera(camera_input: Vector2) -> void:
 	rotation.y -= camera_input.y
 	rotation.y = wrapf(rotation.y, 0.0, TAU)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	move_camera(player.input_manager.camera_input)
 	player.input_manager.camera_input = Vector2.ZERO
