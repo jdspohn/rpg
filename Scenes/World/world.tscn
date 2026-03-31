@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://tb8k4ol1femj"]
 
 [ext_resource type="PackedScene" uid="uid://b7qsfc68qlxi3" path="res://Assets/tree.glb" id="1_t1gg8"]
+[ext_resource type="ArrayMesh" uid="uid://btfkwkpil1osg" path="res://Assets/tree.obj" id="2_yp2ti"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_e2bkl"]
 size = Vector2(100, 100)
@@ -24,7 +25,12 @@ mesh = SubResource("PlaneMesh_e2bkl")
 shape = SubResource("BoxShape3D_e2bkl")
 
 [node name="tree" parent="." unique_id=1545892663 instance=ExtResource("1_t1gg8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.996098, 0.0005016327, -7.68248)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.791153, 0.0005016327, -34.156437)
 
-[node name="tree2" parent="." unique_id=1335803978 instance=ExtResource("1_t1gg8")]
-transform = Transform3D(0.9961947, 0, 0.08715574, 0, 1, 0, -0.08715574, 0, 0.9961947, 16.14745, 0.00049972534, -18.559982)
+[node name="Tree" type="MeshInstance3D" parent="." unique_id=9475528]
+transform = Transform3D(-0.9964161, -0.0779197, 0.032915186, -0.077877216, 0.9969596, 0.0025725628, -0.033015564, 0, -0.9994548, 16.184807, -1.1144581, -19.193642)
+mesh = ExtResource("2_yp2ti")
+
+[node name="Tree2" type="MeshInstance3D" parent="." unique_id=826193055]
+transform = Transform3D(0.7531178, 0.07150697, 0.65398806, -0.04190375, 0.9972708, -0.06078605, -0.6565498, 0.0183745, 0.7540589, -11.966019, -0.5712185, -8.588232)
+mesh = ExtResource("2_yp2ti")
