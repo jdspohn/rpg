@@ -34,3 +34,7 @@ mesh = ExtResource("2_yp2ti")
 [node name="Tree2" type="MeshInstance3D" parent="." unique_id=826193055]
 transform = Transform3D(0.7531178, 0.07150697, 0.65398806, -0.04190375, 0.9972708, -0.06078605, -0.6565498, 0.0183745, 0.7540589, -11.966019, -0.5712185, -8.588232)
 mesh = ExtResource("2_yp2ti")
+
+[node name="Tree3" type="MeshInstance3D" parent="." unique_id=357307852]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.30814, 0.00049972534, 5.112652)
+mesh = ExtResource("2_yp2ti")
