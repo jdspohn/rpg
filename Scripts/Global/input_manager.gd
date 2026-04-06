@@ -1,5 +1,4 @@
-class_name InputManager
-extends Node3D
+extends Node
 
 @export_range(0.0, 0.01) var mouse_sensitivity = 0.005
 @export_range(0.0, 0.1) var gamepad_sensitivity = 0.06
@@ -11,8 +10,8 @@ var is_sprinting = false
 var is_jumping = false
 
 func _ready() -> void:
-	pass
-	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#pass
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _physics_process(_delta: float) -> void:
 	is_sprinting = false

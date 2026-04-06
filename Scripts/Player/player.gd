@@ -1,7 +1,6 @@
 class_name Player
 extends CharacterBody3D
 
-@onready var input_manager: InputManager = %InputManager
 @onready var pivot: Node3D = %Pivot
 @onready var camera_pivot: CameraController = %CameraPivot
 
@@ -33,18 +32,18 @@ func move_and_rotate(delta) -> void:
 		if velocity.y != 0:
 			velocity.y = 0
 		_handle_ground_physics()
-		if input_manager.is_jumping:
+		if InputManager.is_jumping:
 			velocity.y = jump_impulse
 	else:
 		_handle_air_physics(delta)
 	move_and_slide()
 
 func _physics_process(delta: float) -> void:
-	move_direction = Vector3(input_manager.move_input.x, 0, input_manager.move_input.y).normalized()
-	if input_manager.move_input.length() <= 0.4:
+	move_direction = Vector3(InputManager.move_input.x, 0, InputManager.move_input.y).normalized()
+	if InputManager.move_input.length() <= 0.4:
 		move_speed = walk_speed
 	else:
 		move_speed = run_speed
-	if input_manager.is_sprinting:
+	if InputManager.is_sprinting:
 		move_speed = sprint_speed
 	move_and_rotate.call_deferred(delta)
