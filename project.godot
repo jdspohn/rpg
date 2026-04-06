@@ -14,6 +14,10 @@ config/name="rpg"
 run/main_scene="uid://cvo7w7v04f75t"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 
+[autoload]
+
+Server="*uid://ci4watmfq61px"
+
 [file_customization]
 
 folder_colors={

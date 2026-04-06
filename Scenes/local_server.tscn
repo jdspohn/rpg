@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dipv7kbnkyh2k"]
+
+[ext_resource type="Script" uid="uid://i16gqyr0118h" path="res://local_server.gd" id="1_fk18l"]
+
+[node name="LocalServer" type="Node" unique_id=454824770]
+script = ExtResource("1_fk18l")

@@ -11,7 +11,8 @@ var is_sprinting = false
 var is_jumping = false
 
 func _ready() -> void:
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	pass
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 func _physics_process(_delta: float) -> void:
 	is_sprinting = false

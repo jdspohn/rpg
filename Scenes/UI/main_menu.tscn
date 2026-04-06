@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bjgp0m1mun3f4"]
 
+[ext_resource type="Script" uid="uid://buu0eskp7ngus" path="res://Scenes/UI/main_menu.gd" id="1_5wsvm"]
+
 [node name="MainMenu" type="Control" unique_id=2038174252]
 layout_mode = 3
 anchors_preset = 15
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5wsvm")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1450007390]
 layout_mode = 1
@@ -22,10 +25,17 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="StartGame" type="Button" parent="VBoxContainer" unique_id=156421202]
+[node name="ButtonStartGame" type="Button" parent="VBoxContainer" unique_id=156421202]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Start Game"
 
-[node name="JoinGame" type="Button" parent="VBoxContainer" unique_id=2071819459]
+[node name="ButtonJoinGame" type="Button" parent="VBoxContainer" unique_id=2071819459]
+unique_name_in_owner = true
 layout_mode = 2
 text = "Join Game"
+
+[node name="MessageFromClient" type="Button" parent="VBoxContainer" unique_id=702563886]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Message from Client"
