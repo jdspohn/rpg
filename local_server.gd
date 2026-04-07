@@ -1,13 +1,15 @@
 extends Node
 
 func _enter_tree() -> void:
-	# --- Set up Server ---
+	# set up server
 	var server_peer = ENetMultiplayerPeer.new()
 	server_peer.create_server(9393, 10) # Port, Max Clients
 	
 	var server_api = MultiplayerAPI.create_default_interface()
 	get_tree().set_multiplayer(server_api, get_path())
 	multiplayer.multiplayer_peer = server_peer
+	
+	# set up signals
 	server_peer.peer_connected.connect(_on_peer_connected)
 	server_peer.peer_disconnected.connect(_on_peer_disconnected)
 	print("Server created")

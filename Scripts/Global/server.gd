@@ -1,6 +1,7 @@
 extends Node
 
 func create_client():
+	# set up client
 	var client_peer = ENetMultiplayerPeer.new()
 	client_peer.create_client("localhost", 9393) # Connect to local server
 	

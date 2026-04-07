@@ -12,17 +12,20 @@ func _ready() -> void:
 	button_join_game.pressed.connect(_join_game)
 
 func _host_game() -> void:
+	# create local server
 	var local_server = LOCAL_SERVER.instantiate()
-	get_tree().current_scene.add_child(local_server)
+	get_tree().current_scene.add_sibling(local_server)
+	# join local server as client
+	_join_game()
 
 func _join_game() -> void:
+	# create client
 	Server.create_client()
+	# generate world and player
 	var world = WORLD.instantiate()
 	var player = PLAYER.instantiate()
 	get_tree().current_scene.add_child(world)
 	get_tree().current_scene.add_child(player)
+	# hide main menu and mouse cursor
 	hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-func _test_message() -> void:
-	Server.message.rpc()

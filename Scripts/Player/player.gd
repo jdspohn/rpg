@@ -20,12 +20,12 @@ func _handle_ground_physics() -> void:
 
 func _handle_air_physics(delta) -> void:
 	velocity.y -= fall_acceleration * delta
-	if move_direction != Vector3.ZERO:
+	if move_direction:
 		velocity.x = move_direction.x * move_speed
 		velocity.z = move_direction.z * move_speed
 
 func move_and_rotate(delta) -> void:
-	if move_direction != Vector3.ZERO:
+	if move_direction:
 		move_direction = move_direction.rotated(Vector3.UP, camera_pivot.rotation.y)
 		pivot.basis = Basis.looking_at(move_direction)
 	if is_on_floor():
