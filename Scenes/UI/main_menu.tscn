@@ -28,14 +28,11 @@ grow_vertical = 2
 [node name="ButtonStartGame" type="Button" parent="VBoxContainer" unique_id=156421202]
 unique_name_in_owner = true
 layout_mode = 2
+focus_mode = 0
 text = "Start Game"
 
 [node name="ButtonJoinGame" type="Button" parent="VBoxContainer" unique_id=2071819459]
 unique_name_in_owner = true
 layout_mode = 2
+focus_mode = 0
 text = "Join Game"
-
-[node name="MessageFromClient" type="Button" parent="VBoxContainer" unique_id=702563886]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Message from Client"

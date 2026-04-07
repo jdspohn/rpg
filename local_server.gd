@@ -14,7 +14,7 @@ func _enter_tree() -> void:
 
 func _on_peer_connected(id):
 	print(str(id) + " Connected")
-	message.rpc()
+	message.rpc_id(id)
 
 func _on_peer_disconnected(id):
 	print(str(id) + " Disconnected")

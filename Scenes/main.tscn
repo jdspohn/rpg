@@ -1,17 +1,10 @@
 [gd_scene format=3 uid="uid://cvo7w7v04f75t"]
 
-[ext_resource type="PackedScene" uid="uid://tb8k4ol1femj" path="res://Scenes/World/world.tscn" id="1_jjgbg"]
-[ext_resource type="PackedScene" uid="uid://dn85my2emfvu8" path="res://Scenes/Player/player.tscn" id="2_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://da316pt2eda1d" path="res://Scenes/UI/fps_counter.tscn" id="3_8gbba"]
 [ext_resource type="PackedScene" uid="uid://bjgp0m1mun3f4" path="res://Scenes/UI/main_menu.tscn" id="5_kry3j"]
 
 [node name="Main" type="Node" unique_id=1826427475]
 
-[node name="World" parent="." unique_id=29626937 instance=ExtResource("1_jjgbg")]
-
-[node name="Player" parent="." unique_id=1471139302 instance=ExtResource("2_bo1nx")]
-
 [node name="FpsCounter" parent="." unique_id=1283962724 instance=ExtResource("3_8gbba")]
 
 [node name="MainMenu" parent="." unique_id=2038174252 instance=ExtResource("5_kry3j")]
-visible = false
