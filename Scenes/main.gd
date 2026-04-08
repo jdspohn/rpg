@@ -8,3 +8,6 @@ func SpawnNewPlayer(id):
 	var new_player = PLAYER_TEMPLATE.instantiate()
 	new_player.name = str(id)
 	get_tree().current_scene.add_child(new_player)
+
+func DespawnPlayer(id):
+	get_node(str(id)).queue_free()

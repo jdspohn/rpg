@@ -9,7 +9,7 @@ func create_client():
 	get_tree().set_multiplayer(client_api, get_path())
 	multiplayer.multiplayer_peer = client_peer
 	print("Client created")
-	print(get_path)
+	print(get_path())
 
 @rpc("any_peer")
 func message():
@@ -19,3 +19,8 @@ func message():
 func spawn_new_player(id):
 	var player_id = id
 	get_node("/root/Main").SpawnNewPlayer(player_id)
+
+@rpc("any_peer")
+func despawn_player(id):
+	var player_id = id
+	get_node("/root/Main").DespawnPlayer(player_id)

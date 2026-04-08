@@ -21,6 +21,7 @@ func _on_peer_connected(id):
 
 func _on_peer_disconnected(id):
 	print(str(id) + " Disconnected")
+	despawn_player.rpc(id)
 
 @rpc("any_peer")
 func message():
@@ -28,4 +29,8 @@ func message():
 
 @rpc("any_peer")
 func spawn_new_player(_id):
+	pass
+
+@rpc("any_peer")
+func despawn_player(_id):
 	pass
