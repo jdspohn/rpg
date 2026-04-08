@@ -13,10 +13,11 @@ func _enter_tree() -> void:
 	server_peer.peer_connected.connect(_on_peer_connected)
 	server_peer.peer_disconnected.connect(_on_peer_disconnected)
 	print("Server created")
+	print(get_path())
 
 func _on_peer_connected(id):
 	print(str(id) + " Connected")
-	message.rpc_id(id)
+	spawn_new_player.rpc(id)
 
 func _on_peer_disconnected(id):
 	print(str(id) + " Disconnected")
@@ -24,3 +25,7 @@ func _on_peer_disconnected(id):
 @rpc("any_peer")
 func message():
 	print("Message from (%d): Hello (%d) " % [multiplayer.get_remote_sender_id(), multiplayer.get_unique_id()])
+
+@rpc("any_peer")
+func spawn_new_player(_id):
+	pass
