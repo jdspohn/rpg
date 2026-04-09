@@ -22,14 +22,8 @@ func _physics_process(_delta: float) -> void:
 		camera_input.y += gamepad_camera_input.x * gamepad_sensitivity
 	if Input.is_action_pressed("sprint"):
 		is_sprinting = true
-		print(Server.multiplayer.get_unique_id())
-		print(Server.multiplayer.is_server())
-		print(Server.multiplayer.get_peers())
 	if Input.is_action_just_pressed("jump"):
 		is_jumping = true
-		print(multiplayer.get_unique_id())
-		print(multiplayer.is_server())
-		print(multiplayer.get_peers())
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

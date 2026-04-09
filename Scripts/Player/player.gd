@@ -4,6 +4,8 @@ extends CharacterBody3D
 @onready var pivot: Node3D = %Pivot
 @onready var camera_pivot: CameraController = %CameraPivot
 
+var player_state
+
 #Player Stats
 var walk_speed: float = 2.0
 var run_speed: float = 4.0
@@ -38,6 +40,10 @@ func move_and_rotate(delta) -> void:
 		_handle_air_physics(delta)
 	move_and_slide()
 
+func DefinePlayerState() -> void:
+	player_state = {"T": Time.get_unix_time_from_system() * 1000, "P": global_position}
+	Server.SendPlayerState(player_state)
+
 func _physics_process(delta: float) -> void:
 	move_direction = Vector3(InputManager.move_input.x, 0, InputManager.move_input.y).normalized()
 	if InputManager.move_input.length() <= 0.4:
@@ -47,3 +53,4 @@ func _physics_process(delta: float) -> void:
 	if InputManager.is_sprinting:
 		move_speed = sprint_speed
 	move_and_rotate.call_deferred(delta)
+	DefinePlayerState.call_deferred()

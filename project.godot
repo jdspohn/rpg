@@ -19,6 +19,11 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 Server="*uid://ci4watmfq61px"
 InputManager="*uid://dgeb42eysi51g"
 
+[display]
+
+window/size/viewport_width=800
+window/size/viewport_height=400
+
 [file_customization]
 
 folder_colors={

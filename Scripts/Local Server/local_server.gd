@@ -1,0 +1,51 @@
+extends Node
+# player hosted server node instanced into main project
+
+var player_state_collection = {}
+
+func _enter_tree() -> void:
+	# set up server
+	var server_peer = ENetMultiplayerPeer.new()
+	server_peer.create_server(9393, 10) # Port, Max Clients
+	
+	var server_api = MultiplayerAPI.create_default_interface()
+	get_tree().set_multiplayer(server_api, get_path())
+	multiplayer.multiplayer_peer = server_peer
+	
+	# set up signals
+	multiplayer.peer_connected.connect(_on_peer_connected)
+	multiplayer.peer_disconnected.connect(_on_peer_disconnected)
+	print("Server created")
+
+func _on_peer_connected(player_id):
+	print(str(player_id) + " Connected")
+	spawn_new_player.rpc(player_id)
+
+func _on_peer_disconnected(player_id):
+	print(str(player_id) + " Disconnected")
+	player_state_collection.erase(player_id)
+	despawn_player.rpc(player_id)
+
+@rpc("any_peer", "unreliable")
+func ReceivePlayerState(player_state):
+	var player_id = multiplayer.get_remote_sender_id()
+	if player_state_collection.has(player_id):
+		if player_state_collection[player_id]["T"] < player_state["T"]:
+			player_state_collection[player_id] = player_state
+	else:
+		player_state_collection[player_id] = player_state
+
+func SendWorldState(world_state):
+	ReceiveWorldState.rpc(world_state)
+
+@rpc("any_peer")
+func spawn_new_player(_id):
+	pass
+
+@rpc("any_peer")
+func despawn_player(_id):
+	pass
+
+@rpc("any_peer", "unreliable")
+func ReceiveWorldState(_world_state):
+	pass

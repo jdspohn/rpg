@@ -21,11 +21,7 @@ func _host_game() -> void:
 func _join_game() -> void:
 	# create client
 	Server.create_client()
-	# generate world and player
-	var world = WORLD.instantiate()
-	var player = PLAYER.instantiate()
-	get_tree().current_scene.add_child(world)
-	get_tree().current_scene.add_child(player)
 	# hide main menu and mouse cursor
 	hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	
