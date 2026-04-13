@@ -42,8 +42,9 @@ func move_and_rotate(delta) -> void:
 
 func DefinePlayerState() -> void:
 	# send only 20 times per second?
-	player_state = {"T": Time.get_unix_time_from_system() * 1000, "P": global_position, "R": pivot.global_rotation[1]}
-	Server.SendPlayerState(player_state)
+	if Engine.get_physics_frames() % 3 == 0:
+		player_state = {"T": Time.get_unix_time_from_system() * 1000, "P": global_position, "R": pivot.global_rotation[1]}
+		Server.SendPlayerState(player_state)
 
 func _physics_process(delta: float) -> void:
 	move_direction = Vector3(InputManager.move_input.x, 0, InputManager.move_input.y).normalized()
