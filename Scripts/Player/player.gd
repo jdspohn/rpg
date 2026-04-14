@@ -6,7 +6,7 @@ extends CharacterBody3D
 
 var player_state
 
-#Player Stats
+# Player Stats
 var walk_speed: float = 2.0
 var run_speed: float = 4.0
 var sprint_speed: float = 6.0
@@ -41,10 +41,9 @@ func move_and_rotate(delta) -> void:
 	move_and_slide()
 
 func DefinePlayerState() -> void:
-	# send only 20 times per second?
-	if Engine.get_physics_frames() % 3 == 0:
-		player_state = {"T": Time.get_unix_time_from_system() * 1000, "P": global_position, "R": pivot.global_rotation[1]}
-		Server.SendPlayerState(player_state)
+	# FIXME server side clock synchronization?
+	player_state = {"T": Time.get_unix_time_from_system() * 1000, "P": global_position, "R": pivot.global_rotation[1]}
+	Server.SendPlayerState(player_state)
 
 func _physics_process(delta: float) -> void:
 	move_direction = Vector3(InputManager.move_input.x, 0, InputManager.move_input.y).normalized()
@@ -55,4 +54,6 @@ func _physics_process(delta: float) -> void:
 	if InputManager.is_sprinting:
 		move_speed = sprint_speed
 	move_and_rotate.call_deferred(delta)
-	DefinePlayerState.call_deferred()
+	# FIXME should this send only 20 times per second?
+	if Engine.get_physics_frames() % 3 == 0:
+		DefinePlayerState.call_deferred()

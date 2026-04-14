@@ -1,7 +1,7 @@
 extends Node
-# player hosted server node instanced into main project
 
 var player_state_collection = {}
+var host = 0
 
 func _enter_tree() -> void:
 	# set up server
@@ -18,6 +18,8 @@ func _enter_tree() -> void:
 	print("Server created")
 
 func _on_peer_connected(player_id):
+	if host == 0:
+		host = player_id
 	print(str(player_id) + " Connected")
 	spawn_new_player.rpc(player_id)
 
@@ -25,6 +27,20 @@ func _on_peer_disconnected(player_id):
 	print(str(player_id) + " Disconnected")
 	player_state_collection.erase(player_id)
 	despawn_player.rpc(player_id)
+	## FIXME make a better way to check
+	## this could be achieved by just instantiating the 
+	## local server into the main scene and reloading
+	if player_id == host:
+		_terminate_server()
+	#if multiplayer.get_peers().size() < 1:
+		#_terminate_server()
+
+func _terminate_server():
+	multiplayer.multiplayer_peer.close()
+	multiplayer.multiplayer_peer = null
+	multiplayer.peer_connected.disconnect(_on_peer_connected)
+	multiplayer.peer_disconnected.disconnect(_on_peer_disconnected)
+	queue_free()
 
 @rpc("any_peer", "unreliable")
 func ReceivePlayerState(player_state):

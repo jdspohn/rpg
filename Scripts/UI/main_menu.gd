@@ -10,6 +10,7 @@ const PLAYER = preload("uid://dn85my2emfvu8")
 func _ready() -> void:
 	button_start_game.pressed.connect(_host_game)
 	button_join_game.pressed.connect(_join_game)
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _host_game() -> void:
 	# create local server
@@ -24,4 +25,3 @@ func _join_game() -> void:
 	# hide main menu and mouse cursor
 	hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	

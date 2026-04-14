@@ -1,8 +1,9 @@
 extends Node
 
-const PLAYER = preload("uid://dn85my2emfvu8")
 const WORLD = preload("uid://tb8k4ol1femj")
+const PLAYER = preload("uid://dn85my2emfvu8")
 const PLAYER_TEMPLATE = preload("uid://btqh8vh3rfwpb")
+const START_MENU = preload("uid://bemuyjbtmgwmc")
 
 var last_world_state = 0
 var world_state_buffer = []
@@ -15,6 +16,10 @@ func CreateWorld():
 func CreatePlayer():
 	var player = PLAYER.instantiate()
 	get_tree().current_scene.add_child(player)
+
+func CreateStartMenu():
+	var start_menu = START_MENU.instantiate()
+	get_tree().current_scene.add_child(start_menu)
 
 func SpawnNewPlayer(id):
 	if Server.multiplayer.get_unique_id() == id:
@@ -50,7 +55,7 @@ func _physics_process(_delta: float) -> void:
 				if has_node(str(player)):
 					var new_position = lerp(world_state_buffer[1][player]["P"], world_state_buffer[2][player]["P"], interpolation_factor)
 					var new_rotation = world_state_buffer[1][player]["R"]
-					# FIX: causes rotation to flip because of wrong interpolation
+					# FIXME: causes rotation to flip because of wrong interpolation
 					#var new_rotation = lerp(world_state_buffer[0][player]["R"], world_state_buffer[1][player]["R"], interpolation_factor)
 					get_node(str(player)).MovePlayer(new_position, new_rotation)
 				else:

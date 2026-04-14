@@ -1,5 +1,5 @@
 extends Node
-# autoload client script in main project
+
 func create_client():
 	# set up client
 	var client_peer = ENetMultiplayerPeer.new()
@@ -10,11 +10,23 @@ func create_client():
 	multiplayer.multiplayer_peer = client_peer
 	
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
+	multiplayer.server_disconnected.connect(_on_server_disconnected)
 	print("Client created")
 
 func _on_connected_to_server():
 	get_node("/root/Main").CreateWorld()
 	get_node("/root/Main").CreatePlayer()
+	get_node("/root/Main").CreateStartMenu()
+
+func _on_server_disconnected():
+	leave_game()
+
+func leave_game():
+	multiplayer.multiplayer_peer.close()
+	multiplayer.multiplayer_peer = null
+	multiplayer.connected_to_server.disconnect(_on_connected_to_server)
+	multiplayer.server_disconnected.disconnect(_on_server_disconnected)
+	get_tree().reload_current_scene()
 
 @rpc("any_peer")
 func spawn_new_player(id):
