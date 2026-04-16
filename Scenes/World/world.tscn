@@ -9,6 +9,10 @@ size = Vector2(100, 100)
 [sub_resource type="BoxShape3D" id="BoxShape3D_e2bkl"]
 size = Vector3(100, 0.001, 100)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yp2ti"]
+height = 30.0
+radius = 3.0
+
 [node name="World" type="Node3D" unique_id=29626937]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1935531244]
@@ -34,3 +38,15 @@ mesh = ExtResource("2_yp2ti")
 [node name="Tree2" type="MeshInstance3D" parent="." unique_id=826193055]
 transform = Transform3D(0.7531178, 0.07150697, 0.65398806, -0.04190375, 0.9972708, -0.06078605, -0.6565498, 0.0183745, 0.7540589, -11.966019, -0.5712185, -8.588232)
 mesh = ExtResource("2_yp2ti")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=271906023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.316708, 0.0005016327, 7.2545967)
+collision_layer = 2
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1541990187]
+mesh = ExtResource("2_yp2ti")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1171659666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+shape = SubResource("CylinderShape3D_yp2ti")
