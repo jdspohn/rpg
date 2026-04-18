@@ -3,6 +3,7 @@ extends Node
 const WORLD = preload("uid://tb8k4ol1femj")
 const PLAYER = preload("uid://dn85my2emfvu8")
 const PLAYER_TEMPLATE = preload("uid://btqh8vh3rfwpb")
+const MAIN_MENU = preload("uid://bjgp0m1mun3f4")
 const START_MENU = preload("uid://bemuyjbtmgwmc")
 
 var last_world_state = 0
