@@ -2,11 +2,8 @@
 
 [ext_resource type="Script" uid="uid://c07ffjrchop8p" path="res://Scenes/main.gd" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://da316pt2eda1d" path="res://Scenes/UI/fps_counter.tscn" id="3_8gbba"]
-[ext_resource type="PackedScene" uid="uid://bjgp0m1mun3f4" path="res://Scenes/UI/main_menu.tscn" id="5_kry3j"]
 
 [node name="Main" type="Node" unique_id=1826427475]
 script = ExtResource("1_8gbba")
 
 [node name="FpsCounter" parent="." unique_id=1283962724 instance=ExtResource("3_8gbba")]
-
-[node name="MainMenu" parent="." unique_id=2038174252 instance=ExtResource("5_kry3j")]

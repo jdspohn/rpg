@@ -23,5 +23,5 @@ func _join_game() -> void:
 	# create client
 	Server.create_client()
 	# hide main menu and mouse cursor
-	hide()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	queue_free()

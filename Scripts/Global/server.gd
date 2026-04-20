@@ -14,7 +14,7 @@ func create_client():
 	print("Client created")
 
 func _on_connected_to_server():
-	get_node("/root/Main").CreateWorld()
+	await get_node("/root/Main").CreateWorld()
 	get_node("/root/Main").CreatePlayer()
 	get_node("/root/Main").CreateStartMenu()
 
@@ -31,12 +31,12 @@ func leave_game():
 @rpc("any_peer")
 func spawn_new_player(id):
 	var player_id = id
-	get_node("/root/Main").SpawnNewPlayer(player_id)
+	get_node("/root/Main/World").SpawnNewPlayer(player_id)
 
 @rpc("any_peer")
 func despawn_player(id):
 	var player_id = id
-	get_node("/root/Main").DespawnPlayer(player_id)
+	get_node("/root/Main/World").DespawnPlayer(player_id)
 
 func SendPlayerState(player_state):
 	ReceivePlayerState.rpc_id(1, player_state)
@@ -47,4 +47,4 @@ func ReceivePlayerState(_player_state):
 
 @rpc("any_peer", "unreliable")
 func ReceiveWorldState(world_state):
-	get_node("/root/Main").UpdateWorldState(world_state)
+	get_node("/root/Main/World").UpdateWorldState(world_state)

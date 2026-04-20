@@ -1,4 +1,3 @@
-class_name Player
 extends CharacterBody3D
 
 @onready var pivot: Node3D = %Pivot
