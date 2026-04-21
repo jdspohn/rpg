@@ -49,6 +49,7 @@ func SpawnNewPlayer(id):
 	if Server.multiplayer.get_unique_id() == id:
 		return
 	if not has_node(str(id)):
+		# FIXME player should spawn at position if it exists
 		var new_player = PLAYER_TEMPLATE.instantiate()
 		new_player.name = str(id)
 		add_child(new_player)

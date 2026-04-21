@@ -1,27 +1,18 @@
 extends Control
 
-const LOCAL_SERVER = preload("uid://dipv7kbnkyh2k")
-const WORLD = preload("uid://tb8k4ol1femj")
-const PLAYER = preload("uid://dn85my2emfvu8")
-
 @onready var button_start_game: Button = %ButtonStartGame
 @onready var button_join_game: Button = %ButtonJoinGame
 
+signal host_game_pressed(origin: String)
+signal join_game_pressed(origin: String)
+
 func _ready() -> void:
-	button_start_game.pressed.connect(_host_game)
-	button_join_game.pressed.connect(_join_game)
+	button_start_game.pressed.connect(_on_host_game_pressed)
+	button_join_game.pressed.connect(_on_join_game_pressed)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
-func _host_game() -> void:
-	# create local server
-	var local_server = LOCAL_SERVER.instantiate()
-	get_tree().current_scene.add_sibling(local_server)
-	# join local server as client
-	_join_game()
+func _on_host_game_pressed() -> void:
+	host_game_pressed.emit()
 
-func _join_game() -> void:
-	# create client
-	Server.create_client()
-	# hide main menu and mouse cursor
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	queue_free()
+func _on_join_game_pressed() -> void:
+	join_game_pressed.emit()
