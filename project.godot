@@ -18,6 +18,8 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 
 Server="*uid://ci4watmfq61px"
 InputManager="*uid://dgeb42eysi51g"
+PlayerData="*uid://ballnc61hfj4m"
+Settings="*uid://dn7cp2nl2atfb"
 
 [display]
 

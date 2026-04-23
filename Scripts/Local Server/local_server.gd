@@ -28,8 +28,6 @@ func _on_peer_disconnected(player_id):
 	player_state_collection.erase(player_id)
 	despawn_player.rpc(player_id)
 	## FIXME make a better way to check
-	## this could be achieved by just instantiating the 
-	## local server into the main scene and reloading
 	if player_id == host:
 		_terminate_server()
 	#if multiplayer.get_peers().size() < 1:
