@@ -4,6 +4,7 @@ extends CharacterBody3D
 @onready var camera_pivot: Node3D = %CameraPivot
 
 var player_state
+var menu_open = false
 
 var camera_input = Vector2.ZERO
 var gamepad_camera_input = Vector2.ZERO
@@ -13,7 +14,12 @@ var move_direction := Vector3.ZERO
 var move_speed: float
 
 func _physics_process(delta: float) -> void:
-	set_camera()
+	if not menu_open:
+		if Input.is_action_just_pressed("start_menu"):
+			get_node("/root/Main/StartMenu").open()
+			menu_open = true
+		set_camera()
+	
 	move_and_rotate(delta)
 	
 	# FIXME should this send only 20 times per second?
