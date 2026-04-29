@@ -1,5 +1,8 @@
 extends Node
 
+# Player ID
+var character_name: String
+
 # Player Stats
 var walk_speed: float = 2.0
 var run_speed: float = 4.0

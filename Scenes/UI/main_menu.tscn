@@ -44,7 +44,6 @@ text = "Quit"
 
 [node name="CharacterSelect" type="VBoxContainer" parent="." unique_id=629989031]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -58,28 +57,30 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WorldSelect" type="VBoxContainer" parent="." unique_id=1450007390]
+[node name="HBoxContainer" type="HBoxContainer" parent="CharacterSelect" unique_id=597384991]
+layout_mode = 2
+alignment = 1
+
+[node name="ButtonCreateCharacter" type="Button" parent="CharacterSelect/HBoxContainer" unique_id=1428883393]
+layout_mode = 2
+text = "Create New"
+
+[node name="ButtonDeleteCharacter" type="Button" parent="CharacterSelect/HBoxContainer" unique_id=463462009]
+layout_mode = 2
+text = "Delete"
+
+[node name="WorldSelect" type="HBoxContainer" parent="CharacterSelect" unique_id=498577217]
 unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+alignment = 1
 
-[node name="ButtonStartGame" type="Button" parent="WorldSelect" unique_id=156421202]
+[node name="ButtonStartGame" type="Button" parent="CharacterSelect/WorldSelect" unique_id=156421202]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
 text = "Start Game"
 
-[node name="ButtonJoinGame" type="Button" parent="WorldSelect" unique_id=2071819459]
+[node name="ButtonJoinGame" type="Button" parent="CharacterSelect/WorldSelect" unique_id=2071819459]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0

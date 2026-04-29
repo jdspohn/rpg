@@ -14,8 +14,8 @@ func create_client():
 	print("Client created")
 
 func _on_connected_to_server():
-	await get_node("/root/Main").CreateWorld()
-	get_node("/root/Main").CreatePlayer()
+	await get_node("/root/Main").LoadWorld()
+	get_node("/root/Main").LoadPlayer()
 	get_node("/root/Main").CreateStartMenu()
 
 func _on_server_disconnected():
