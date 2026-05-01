@@ -5,10 +5,9 @@ extends Control
 @onready var button_settings: Button = %ButtonSettings
 @onready var button_quit: Button = %ButtonQuit
 
-@onready var character_select: VBoxContainer = %CharacterSelect
-@onready var button_create_character: Button = $CharacterSelect/HBoxContainer/ButtonCreateCharacter
-@onready var button_delete_character: Button = $CharacterSelect/HBoxContainer/ButtonDeleteCharacter
-
+@onready var character_select: PanelContainer = %CharacterSelect
+@onready var button_create_character: Button = %ButtonCreateCharacter
+@onready var button_delete_character: Button = %ButtonDeleteCharacter
 
 @onready var world_select: HBoxContainer = %WorldSelect
 @onready var button_start_game: Button = %ButtonStartGame

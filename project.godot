@@ -24,6 +24,7 @@ Settings="*uid://dn7cp2nl2atfb"
 
 window/size/viewport_width=800
 window/size/viewport_height=400
+window/stretch/mode="canvas_items"
 
 [file_customization]
 

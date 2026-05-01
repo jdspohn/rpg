@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
 @onready var pivot: Node3D = %Pivot
-@onready var field_name: LineEdit = %FieldName
+@onready var input_name: LineEdit = $Control/InputName
 @onready var button_create: Button = %ButtonCreate
 @onready var button_back: Button = %ButtonBack
 
@@ -21,10 +21,14 @@ func _rotate_character() -> void:
 
 
 func _on_create_pressed() -> void:
+	if input_name.text == "":
+		return
+	character_name = input_name.text
+	print ("user://playersaves/", character_name)
 	#generate uuid
 	#pass uuid and name to playerdata
 	#playerdata.save()
-	pass
+
 
 
 func _on_back_pressed() -> void:

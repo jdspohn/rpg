@@ -29,8 +29,7 @@ custom_minimum_size = Vector2(300, 75)
 layout_mode = 3
 anchors_preset = 0
 
-[node name="FieldName" type="LineEdit" parent="Control" unique_id=1093510612]
-unique_name_in_owner = true
+[node name="InputName" type="LineEdit" parent="Control" unique_id=1093510612]
 custom_minimum_size = Vector2(250, 31)
 layout_direction = 1
 layout_mode = 1
