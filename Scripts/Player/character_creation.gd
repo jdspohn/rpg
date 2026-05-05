@@ -45,6 +45,11 @@ func _on_create_pressed() -> void:
 	#playerdata.save()
 
 
+func _create_character() -> void:
+	PlayerData.character_name = character_name
+	PlayerData.level = 1
+	PlayerData.save_player_data_json()
+
 
 func _on_back_pressed() -> void:
 	#FIXME go back to character select
