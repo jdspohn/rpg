@@ -7,6 +7,8 @@ const WORLD = preload("uid://tb8k4ol1femj")
 const PLAYER = preload("uid://dn85my2emfvu8")
 const START_MENU = preload("uid://bemuyjbtmgwmc")
 
+#TODO disconnect from signals when a menu is freed
+
 func _ready() -> void:
 	StartMainMenu()
 
@@ -29,7 +31,7 @@ func StartGame():
 
 
 func JoinGame():
-	## FIXME check for server availability
+	## TODO check for server availability
 	get_node("MainMenu").queue_free()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Server.create_client()
