@@ -48,14 +48,12 @@ func _on_create_pressed() -> void:
 		label_name_exists.visible = true
 		return
 	
-	print (save_path)
 	_create_character()
-	#generate uuid
-	#pass uuid and name to playerdata
-	#playerdata.save()
 
 
 func _create_character() -> void:
+	# TODO: generate uuid
+	print ("Creating character...")
 	PlayerData.save_path_json = save_path
 	PlayerData.character_name = character_name
 	PlayerData.level = 1

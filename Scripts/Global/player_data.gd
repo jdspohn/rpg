@@ -4,6 +4,8 @@ const KEY_SAVE_PATH_JSON: String = "save_path_json"
 const KEY_CHARACTER_NAME: String = "character_name"
 const KEY_LEVEL: String = "level"
 
+var save_path_json: String = "user://save_files/character.json"
+
 # Player ID
 var character_name: String
 
@@ -14,8 +16,6 @@ var run_speed: float = 4.0
 var sprint_speed: float = 6.0
 var jump_impulse: float = 13.0
 var fall_acceleration: float = 50.0
-
-var save_path_json: String = "user://save_files/character.json"
 
 
 func save_player_data_json() -> void:

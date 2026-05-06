@@ -35,7 +35,20 @@ func _load_character_list() -> void:
 		var player_save_files_json = _get_player_save_files_json()
 		if player_save_files_json.is_empty():
 			print ("no characters found")
-		print (player_save_files_json)
+		else:
+			for file_path in player_save_files_json:
+				var save_data: Dictionary = {}
+				var err: Error = Filehandler.open_json_file(file_path, save_data)
+				if err != OK:
+					push_error("Could not load player data (JSON): ", error_string(err))
+					continue
+				
+				err = PlayerData.verify_save_data_json(save_data)
+				if err != OK:
+					push_error("Invalid save file structure")
+					continue
+				
+				print (save_data["character_name"])
 	else:
 		print ("cannot find dir")
 
@@ -54,6 +67,7 @@ func _get_player_save_files_json() -> Array:
 		
 		dir.list_dir_end()
 	else:
+		# TODO: add error handling
 		print ("Error, cannot open dir")
 	return player_save_files_json
 
