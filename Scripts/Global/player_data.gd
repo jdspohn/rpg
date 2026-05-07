@@ -4,7 +4,7 @@ const KEY_SAVE_PATH_JSON: String = "save_path_json"
 const KEY_CHARACTER_NAME: String = "character_name"
 const KEY_LEVEL: String = "level"
 
-var save_path_json: String = "user://save_files/character.json"
+var save_path_json: String = "user://characters/character.json"
 
 # Player ID
 var character_name: String
@@ -43,7 +43,7 @@ func load_player_data_json() -> void:
 	
 	save_path_json = save_data[KEY_SAVE_PATH_JSON]
 	character_name = save_data[KEY_CHARACTER_NAME]
-	level = save_data[KEY_LEVEL]
+	level = int(save_data[KEY_LEVEL])
 
 
 func verify_save_data_json(save_data: Dictionary) -> Error:

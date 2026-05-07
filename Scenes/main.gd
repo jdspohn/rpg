@@ -10,17 +10,23 @@ const START_MENU = preload("uid://bemuyjbtmgwmc")
 #TODO disconnect from signals when a menu is freed
 
 func _ready() -> void:
-	StartMainMenu()
+	LoadMainMenu()
 
-func StartMainMenu():
+
+func LoadMainMenu():
 	var main_menu = MAIN_MENU.instantiate()
 	main_menu.create_character_pressed.connect(StartCharacterCreation)
 	main_menu.start_game_pressed.connect(StartGame)
 	main_menu.join_game_pressed.connect(JoinGame)
 	add_child(main_menu)
 
-func StartCharacterCreation():
+
+func DestroyMainMenu():
 	get_node("MainMenu").queue_free()
+
+
+func StartCharacterCreation():
+	DestroyMainMenu()
 	var character_creation = CHARACTER_CREATION.instantiate()
 	add_child(character_creation)
 
@@ -32,7 +38,8 @@ func StartGame():
 
 func JoinGame():
 	## TODO check for server availability
-	get_node("MainMenu").queue_free()
+	## await load player data
+	DestroyMainMenu()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Server.create_client()
 

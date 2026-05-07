@@ -63,7 +63,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 12
-text = "* Name already exists."
+text = "* Save file already exists. Please try again."
 
 [node name="Control2" type="Control" parent="." unique_id=1286548464]
 custom_minimum_size = Vector2(0, 50)

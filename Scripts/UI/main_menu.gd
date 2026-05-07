@@ -1,11 +1,7 @@
 extends Control
 
-@onready var main_menu_select: VBoxContainer = %MainMenuSelect
-@onready var button_start: Button = %ButtonStart
-@onready var button_settings: Button = %ButtonSettings
-@onready var button_quit: Button = %ButtonQuit
-
 @onready var character_select: PanelContainer = %CharacterSelect
+@onready var character_list: VBoxContainer = %CharacterList
 @onready var button_create_character: Button = %ButtonCreateCharacter
 @onready var button_delete_character: Button = %ButtonDeleteCharacter
 
@@ -17,12 +13,9 @@ signal start_game_pressed(origin: String)
 signal join_game_pressed(origin: String)
 signal create_character_pressed(origin: String)
 
-var player_save_files_dir: String = "user://save_files"
+var player_save_files_dir: String = "user://characters"
 
 func _ready() -> void:
-	button_start.pressed.connect(_on_start_pressed)
-	button_settings.pressed.connect(_on_settings_pressed)
-	button_quit.pressed.connect(_on_quit_pressed)
 	button_create_character.pressed.connect(_on_create_character_pressed)
 	button_start_game.pressed.connect(_on_start_game_pressed)
 	button_join_game.pressed.connect(_on_join_game_pressed)
@@ -48,7 +41,11 @@ func _load_character_list() -> void:
 					push_error("Invalid save file structure")
 					continue
 				
+				var slot = player_save_files_json.find(file_path)
+				_create_character_option(slot, save_data["save_path_json"], save_data["character_name"], int(save_data["level"]))
 				print (save_data["character_name"])
+			if character_list.has_node("0"):
+				get_node("CharacterSelect/VBoxContainer/PanelContainer/CharacterList/0").pressed.emit()
 	else:
 		print ("cannot find dir")
 
@@ -72,23 +69,25 @@ func _get_player_save_files_json() -> Array:
 	return player_save_files_json
 
 
-func _on_start_pressed() -> void:
-	main_menu_select.hide()
-	character_select.show()
+func _create_character_option(slot, save_path, character_name, _level) -> void:
+	var character_list_option = Button.new()
+	character_list_option.name = str(slot)
+	character_list_option.pressed.connect(_select_character.bind(save_path))
+	character_list_option.text = str(slot, character_name)
+	character_list.add_child(character_list_option)
 
 
-func _on_settings_pressed() -> void:
-	pass
+func _select_character(save_path) -> void:
+	print (save_path)
 
-
-func _on_quit_pressed() -> void:
-	get_tree().quit()
 
 func _on_create_character_pressed() -> void:
 	create_character_pressed.emit()
 
+
 func _on_delete_character_pressed() -> void:
 	pass
+
 
 func _on_start_game_pressed() -> void:
 	start_game_pressed.emit()

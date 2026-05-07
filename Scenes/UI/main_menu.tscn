@@ -11,37 +11,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5wsvm")
 
-[node name="MainMenuSelect" type="VBoxContainer" parent="." unique_id=585219329]
-unique_name_in_owner = true
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ButtonStart" type="Button" parent="MainMenuSelect" unique_id=1822916161]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Start"
-
-[node name="ButtonSettings" type="Button" parent="MainMenuSelect" unique_id=1683570770]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Settings"
-
-[node name="ButtonQuit" type="Button" parent="MainMenuSelect" unique_id=35566018]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Quit"
-
 [node name="CharacterSelect" type="PanelContainer" parent="." unique_id=2013728910]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 300)
@@ -64,6 +33,10 @@ layout_mode = 2
 [node name="PanelContainer" type="PanelContainer" parent="CharacterSelect/VBoxContainer" unique_id=196463047]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="CharacterList" type="VBoxContainer" parent="CharacterSelect/VBoxContainer/PanelContainer" unique_id=1087912244]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CharacterSelect/VBoxContainer" unique_id=597384991]
 layout_mode = 2
