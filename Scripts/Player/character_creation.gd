@@ -17,6 +17,7 @@ func _ready() -> void:
 	button_back.pressed.connect(_on_back_pressed)
 	input_name.text_changed.connect(_on_text_changed)
 	input_name.text_submitted.connect(_on_text_submitted)
+	input_name.grab_focus()
 	button_create.disabled = true
 	label_no_spaces.visible = false
 	label_name_exists.visible = false
