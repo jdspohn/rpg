@@ -130,4 +130,8 @@ func _on_start_game_pressed() -> void:
 
 
 func _on_join_game_pressed() -> void:
-	join_game_pressed.emit()
+	if FileAccess.file_exists(selected_character) and selected_character.ends_with(".json"):
+		PlayerData.save_path_json = selected_character
+		join_game_pressed.emit()
+	else:
+		return

@@ -1,6 +1,7 @@
 extends Node
 
 var player_state_collection = {}
+var player_appearance_collection = {}
 var host = 0
 
 func _enter_tree() -> void:
@@ -21,11 +22,11 @@ func _on_peer_connected(player_id):
 	if host == 0:
 		host = player_id
 	print(str(player_id) + " Connected")
-	spawn_new_player.rpc(player_id)
 
 func _on_peer_disconnected(player_id):
 	print(str(player_id) + " Disconnected")
 	player_state_collection.erase(player_id)
+	player_appearance_collection.erase(player_id)
 	despawn_player.rpc(player_id)
 	## FIXME make a better way to check
 	if player_id == host:
@@ -39,6 +40,22 @@ func _terminate_server():
 	multiplayer.peer_connected.disconnect(_on_peer_connected)
 	multiplayer.peer_disconnected.disconnect(_on_peer_disconnected)
 	queue_free()
+
+
+@rpc("any_peer", "reliable")
+func ReceivePlayerAppearance(player_appearance):
+	var player_id = multiplayer.get_remote_sender_id()
+	player_appearance_collection[player_id] = player_appearance
+	SendPlayerAppearanceCollection()
+
+
+func SendPlayerAppearanceCollection():
+	ReceivePlayerAppearanceCollection.rpc(player_appearance_collection)
+
+@rpc("any_peer", "reliable")
+func ReceivePlayerAppearanceCollection(_server_player_appearance_collection):
+	pass
+
 
 @rpc("any_peer", "unreliable")
 func ReceivePlayerState(player_state):

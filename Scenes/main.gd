@@ -38,8 +38,8 @@ func StartGame():
 
 func JoinGame():
 	## TODO check for server availability
-	## await load player data
-	DestroyMainMenu()
+	PlayerData.load_player_data_json()
+	#DestroyMainMenu()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	Server.create_client()
 

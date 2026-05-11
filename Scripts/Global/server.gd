@@ -1,5 +1,9 @@
 extends Node
 
+var initializing: bool = false
+var active: bool = false
+var player_appearance_collection = {}
+
 func create_client():
 	# set up client
 	var client_peer = ENetMultiplayerPeer.new()
@@ -14,14 +18,22 @@ func create_client():
 	print("Client created")
 
 func _on_connected_to_server():
-	await get_node("/root/Main").LoadWorld()
-	get_node("/root/Main").LoadPlayer()
-	get_node("/root/Main").CreateStartMenu()
+	initializing = true
+	SendPlayerAppearance()
 
 func _on_server_disconnected():
 	leave_game()
 
+func start_game():
+	get_node("/root/Main").DestroyMainMenu()
+	await get_node("/root/Main").LoadWorld()
+	get_node("/root/Main").LoadPlayer()
+	get_node("/root/Main").CreateStartMenu()
+	active = true
+
 func leave_game():
+	active = false
+	player_appearance_collection = {}
 	multiplayer.multiplayer_peer.close()
 	multiplayer.multiplayer_peer = null
 	multiplayer.connected_to_server.disconnect(_on_connected_to_server)
@@ -39,12 +51,35 @@ func despawn_player(id):
 	get_node("/root/Main/World").DespawnPlayer(player_id)
 
 func SendPlayerState(player_state):
-	ReceivePlayerState.rpc_id(1, player_state)
+	if active == true:
+		ReceivePlayerState.rpc_id(1, player_state)
+
+func SendPlayerAppearance():
+	var player_appearance = [
+		PlayerData.character_name
+	]
+	ReceivePlayerAppearance.rpc_id(1, player_appearance)
+
+
+@rpc("any_peer", "reliable")
+func ReceivePlayerAppearance(_player_appearance):
+	pass
+
+
+@rpc("any_peer", "reliable")
+func ReceivePlayerAppearanceCollection(server_player_appearance_collection):
+	player_appearance_collection = server_player_appearance_collection
+	if initializing == true:
+		initializing = false
+		start_game()
+
 
 @rpc("any_peer", "unreliable")
 func ReceivePlayerState(_player_state):
 	pass
 
+
 @rpc("any_peer", "unreliable")
 func ReceiveWorldState(world_state):
-	get_node("/root/Main/World").UpdateWorldState(world_state)
+	if active == true:
+		get_node("/root/Main/World").UpdateWorldState(world_state)
