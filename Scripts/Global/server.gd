@@ -32,6 +32,7 @@ func start_game():
 	active = true
 
 func leave_game():
+	initializing = false
 	active = false
 	player_appearance_collection = {}
 	multiplayer.multiplayer_peer.close()
