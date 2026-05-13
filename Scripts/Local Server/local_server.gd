@@ -28,6 +28,7 @@ func _on_peer_disconnected(player_id):
 	player_state_collection.erase(player_id)
 	player_appearance_collection.erase(player_id)
 	despawn_player.rpc(player_id)
+	SendPlayerAppearanceCollection(player_id)
 	## FIXME make a better way to check
 	if player_id == host:
 		_terminate_server()
@@ -46,11 +47,12 @@ func _terminate_server():
 func ReceivePlayerAppearance(player_appearance):
 	var player_id = multiplayer.get_remote_sender_id()
 	player_appearance_collection[player_id] = player_appearance
-	SendPlayerAppearanceCollection()
+	SendPlayerAppearanceCollection(player_id)
 
 
-func SendPlayerAppearanceCollection():
-	ReceivePlayerAppearanceCollection.rpc(player_appearance_collection)
+func SendPlayerAppearanceCollection(player_id):
+	ReceivePlayerAppearanceCollection.rpc(player_appearance_collection, player_id)
+
 
 @rpc("any_peer", "reliable")
 func ReceivePlayerAppearanceCollection(_server_player_appearance_collection):

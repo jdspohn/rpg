@@ -27,9 +27,7 @@ func _physics_process(_delta: float) -> void:
 					#var new_rotation = lerp(world_state_buffer[0][player]["R"], world_state_buffer[1][player]["R"], interpolation_factor)
 					get_node(str(player)).MovePlayer(new_position, new_rotation)
 				else:
-					if Server.player_appearance_collection.has(player):
-						print("Spawning player ", player)
-						SpawnNewPlayer(player)
+					SpawnNewPlayer(player)
 		elif render_time > world_state_buffer[1].T:
 			var extrapolation_factor = float(render_time - world_state_buffer[0]["T"]) / float(world_state_buffer[1]["T"] - world_state_buffer[0]["T"]) - 1.00
 			for player in world_state_buffer[1].keys():
@@ -49,7 +47,8 @@ func _physics_process(_delta: float) -> void:
 func SpawnNewPlayer(id):
 	if Server.multiplayer.get_unique_id() == id:
 		return
-	if not has_node(str(id)):
+	if not has_node(str(id)) and Server.player_appearance_collection.has(id):
+		print("Spawning player ", id)
 		# FIXME player should spawn at position if it exists
 		var new_player = PLAYER_TEMPLATE.instantiate()
 		new_player.name = str(id)
@@ -58,7 +57,8 @@ func SpawnNewPlayer(id):
 
 func DespawnPlayer(id):
 	await get_tree().create_timer(0.2).timeout
-	get_node(str(id)).queue_free()
+	if has_node(str(id)):
+		get_node(str(id)).queue_free()
 
 func UpdateWorldState(world_state):
 	if world_state["T"] > last_world_state:

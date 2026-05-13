@@ -68,9 +68,10 @@ func ReceivePlayerAppearance(_player_appearance):
 
 
 @rpc("any_peer", "reliable")
-func ReceivePlayerAppearanceCollection(server_player_appearance_collection):
+func ReceivePlayerAppearanceCollection(server_player_appearance_collection, player_id):
 	player_appearance_collection = server_player_appearance_collection
-	if initializing == true:
+	#FIXME could cause errors if this is sent from another source while a player is connecting 
+	if Server.multiplayer.get_unique_id() == player_id and initializing == true:
 		initializing = false
 		start_game()
 
