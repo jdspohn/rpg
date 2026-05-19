@@ -42,9 +42,9 @@ func leave_game():
 	get_tree().reload_current_scene()
 
 @rpc("any_peer")
-func spawn_new_player(id):
+func spawn_new_player(id, spawn_position, spawn_rotation):
 	var player_id = id
-	get_node("/root/Main/World").SpawnNewPlayer(player_id)
+	get_node("/root/Main/World").SpawnNewPlayer(player_id, spawn_position, spawn_rotation)
 
 @rpc("any_peer")
 func despawn_player(id):
