@@ -10,6 +10,8 @@ var character_name: String
 
 # Player Stats
 var level: int = 1
+
+# Player Constants (can change temporarily)
 var walk_speed: float = 2.0
 var run_speed: float = 4.0
 var sprint_speed: float = 6.0

@@ -6,19 +6,19 @@ extends CharacterBody3D
 var player_state
 var menu_open = false
 
-var camera_input = Vector2.ZERO
-var gamepad_camera_input = Vector2.ZERO
+var camera_input: Vector2 = Vector2.ZERO
+var gamepad_camera_input: Vector2 = Vector2.ZERO
 
-var move_input := Vector2.ZERO
-var move_direction := Vector3.ZERO
-var move_speed: float
+var move_input: Vector2 = Vector2.ZERO
+var move_direction: Vector3 = Vector3.ZERO
+var move_speed: float = 0
 
 func _physics_process(delta: float) -> void:
 	if not menu_open:
+		set_camera()
 		if Input.is_action_just_pressed("start_menu"):
 			get_node("/root/Main/StartMenu").open()
 			menu_open = true
-		set_camera()
 	
 	move_and_rotate(delta)
 	

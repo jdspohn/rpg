@@ -60,6 +60,7 @@ func _on_create_pressed() -> void:
 		return
 	
 	_create_character()
+	#TODO go to character select with new character selected
 	get_tree().reload_current_scene()
 
 

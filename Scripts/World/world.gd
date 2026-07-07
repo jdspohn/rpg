@@ -24,6 +24,7 @@ func _physics_process(_delta: float) -> void:
 					var new_position = lerp(world_state_buffer[1][player]["P"], world_state_buffer[2][player]["P"], interpolation_factor)
 					var new_rotation = world_state_buffer[1][player]["R"]
 					# FIXME: causes rotation to flip because of wrong interpolation
+					# wrapf?
 					#var new_rotation = lerp(world_state_buffer[0][player]["R"], world_state_buffer[1][player]["R"], interpolation_factor)
 					get_node(str(player)).MovePlayer(new_position, new_rotation)
 				else:
