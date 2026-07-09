@@ -2,9 +2,13 @@
 
 [ext_resource type="Script" uid="uid://i16gqyr0118h" path="res://Scripts/Local Server/local_server.gd" id="1_fk18l"]
 [ext_resource type="Script" uid="uid://cx8sugd1wxqvf" path="res://Scripts/Local Server/state_processing.gd" id="2_hi651"]
+[ext_resource type="Script" uid="uid://cb1gnfjp82l5q" path="res://Scripts/Local Server/map.gd" id="3_4b8h1"]
 
 [node name="LocalServer" type="Node" unique_id=454824770]
 script = ExtResource("1_fk18l")
 
 [node name="StateProcessing" type="Node" parent="." unique_id=1989269184]
 script = ExtResource("2_hi651")
+
+[node name="Map" type="Node" parent="." unique_id=1982084857]
+script = ExtResource("3_4b8h1")

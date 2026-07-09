@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://db6e1qko0p3mc"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_7gub7"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_a3d8c"]
+height = 1.8
+
+[node name="Skeleton" type="CharacterBody3D" unique_id=1471139302]
+collision_mask = 0
+
+[node name="Pivot" type="Node3D" parent="." unique_id=1944823717]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Pivot" unique_id=1570194691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_7gub7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1951700003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_a3d8c")
+
+[node name="Nameplate" type="Label3D" parent="." unique_id=1546914376]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+visibility_range_end = 10.0
+billboard = 2
